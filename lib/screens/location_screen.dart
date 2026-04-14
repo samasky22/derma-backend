@@ -5,6 +5,8 @@ import 'map_screen.dart';
 import 'home_screen.dart';
 
 class LocationScreen extends StatefulWidget {
+  const LocationScreen({super.key});
+
   @override
   _LocationScreenState createState() => _LocationScreenState();
 }
@@ -51,11 +53,11 @@ class _LocationScreenState extends State<LocationScreen> {
         children: [
           // 🌍 Background (map-like gradient)
           Container(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               gradient: LinearGradient(
                 colors: [
-                  const Color.fromARGB(255, 135, 185, 201),
-                  const Color.fromARGB(255, 255, 255, 255),
+                  Color.fromARGB(255, 135, 185, 201),
+                  Color.fromARGB(255, 255, 255, 255),
                 ],
                 begin: Alignment.topRight,
                 end: Alignment.bottomCenter,
@@ -67,21 +69,21 @@ class _LocationScreenState extends State<LocationScreen> {
           SafeArea(
             child: Column(
               children: [
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
 
                 /// Back arrow
                 Align(
                   alignment: Alignment.centerLeft,
                   child: IconButton(
                     icon: const Icon(Icons.arrow_back, color: Colors.blueGrey),
-                    onPressed: (){
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) =>HomeScreen() ,
-                      ),
-                    );
-                  }
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const HomeScreen(),
+                        ),
+                      );
+                    },
                   ),
                 ),
                 // Title
@@ -94,17 +96,17 @@ class _LocationScreenState extends State<LocationScreen> {
                   ),
                 ),
 
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
 
                 // 📦 Glass-style card
                 Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: Container(
-                    padding: EdgeInsets.all(16),
+                    padding: const EdgeInsets.all(16),
                     decoration: BoxDecoration(
                       color: Colors.white.withOpacity(0.9),
                       borderRadius: BorderRadius.circular(20),
-                      boxShadow: [
+                      boxShadow: const [
                         BoxShadow(
                           color: Colors.black12,
                           blurRadius: 10,
@@ -117,21 +119,21 @@ class _LocationScreenState extends State<LocationScreen> {
                         TextField(
                           controller: controller,
                           decoration: InputDecoration(
-                            prefixIcon: Icon(Icons.location_city),
+                            prefixIcon: const Icon(Icons.location_city),
                             labelText: "Enter city",
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(12),
                             ),
                           ),
                         ),
-                        SizedBox(height: 15),
+                        const SizedBox(height: 15),
 
                         ElevatedButton.icon(
                           onPressed: manualSearch,
-                          icon: Icon(Icons.search),
-                          label: Text("Search Location"),
+                          icon: const Icon(Icons.search),
+                          label: const Text("Search Location"),
                           style: ElevatedButton.styleFrom(
-                            minimumSize: Size(double.infinity, 50),
+                            minimumSize: const Size(double.infinity, 50),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(12),
                             ),
@@ -151,8 +153,8 @@ class _LocationScreenState extends State<LocationScreen> {
             right: 20,
             child: FloatingActionButton.extended(
               onPressed: getLocation,
-              icon: Icon(Icons.my_location),
-              label: Text("Use My Location"),
+              icon: const Icon(Icons.my_location),
+              label: const Text("Use My Location"),
             ),
           ),
         ],

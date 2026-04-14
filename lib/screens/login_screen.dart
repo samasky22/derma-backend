@@ -43,9 +43,12 @@ class _LoginScreenState extends State<LoginScreen> {
       );
     } on FirebaseAuthException catch (e) {
       String message = "Login failed";
-      if (e.code == 'user-not-found') message = "No account found with this email";
-      else if (e.code == 'wrong-password') message = "Incorrect password";
-      else if (e.code == 'invalid-email') message = "Invalid email format";
+      if (e.code == 'user-not-found') {
+        message = "No account found with this email";
+      } else if (e.code == 'wrong-password')
+        message = "Incorrect password";
+      else if (e.code == 'invalid-email')
+        message = "Invalid email format";
 
       showMessage(message);
     } catch (e) {
@@ -67,7 +70,9 @@ class _LoginScreenState extends State<LoginScreen> {
       return;
     }
     try {
-      await FirebaseAuth.instance.sendPasswordResetEmail(email: email.text.trim());
+      await FirebaseAuth.instance.sendPasswordResetEmail(
+        email: email.text.trim(),
+      );
       showMessage("Password reset email sent 📧");
     } catch (e) {
       showMessage("Failed to send reset email");
@@ -79,7 +84,8 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       backgroundColor: surfaceWhite,
       body: SafeArea(
-        child: SingleChildScrollView( // 🛡️ Prevents keyboard overflow
+        child: SingleChildScrollView(
+          // 🛡️ Prevents keyboard overflow
           padding: const EdgeInsets.symmetric(horizontal: 24),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -94,7 +100,11 @@ class _LoginScreenState extends State<LoginScreen> {
                     color: primaryBlue.withOpacity(0.1),
                     shape: BoxShape.circle,
                   ),
-                  child: Icon(Icons.health_and_safety, size: 60, color: primaryBlue),
+                  child: Icon(
+                    Icons.health_and_safety,
+                    size: 60,
+                    color: primaryBlue,
+                  ),
                 ),
               ),
 
@@ -102,7 +112,11 @@ class _LoginScreenState extends State<LoginScreen> {
 
               Text(
                 "Welcome to DermaAI",
-                style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: textDark),
+                style: TextStyle(
+                  fontSize: 28,
+                  fontWeight: FontWeight.bold,
+                  color: textDark,
+                ),
               ),
               const SizedBox(height: 8),
               Text(
@@ -145,10 +159,13 @@ class _LoginScreenState extends State<LoginScreen> {
                   fillColor: Colors.white,
                   suffixIcon: IconButton(
                     icon: Icon(
-                      isPasswordHidden ? Icons.visibility_off : Icons.visibility,
+                      isPasswordHidden
+                          ? Icons.visibility_off
+                          : Icons.visibility,
                       color: Colors.grey,
                     ),
-                    onPressed: () => setState(() => isPasswordHidden = !isPasswordHidden),
+                    onPressed: () =>
+                        setState(() => isPasswordHidden = !isPasswordHidden),
                   ),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(15),
@@ -168,7 +185,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   onPressed: resetPassword,
                   child: Text(
                     "Forgot Password?",
-                    style: TextStyle(color: primaryBlue, fontWeight: FontWeight.w600),
+                    style: TextStyle(
+                      color: primaryBlue,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
                 ),
               ),
@@ -183,15 +203,21 @@ class _LoginScreenState extends State<LoginScreen> {
                   onPressed: isLoading ? null : login,
                   style: ElevatedButton.styleFrom(
                     backgroundColor: primaryBlue,
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15),
+                    ),
                     elevation: 2,
                   ),
                   child: isLoading
                       ? const CircularProgressIndicator(color: Colors.white)
                       : const Text(
-                    "LOGIN",
-                    style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
-                  ),
+                          "LOGIN",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
                 ),
               ),
 
@@ -201,7 +227,10 @@ class _LoginScreenState extends State<LoginScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text("Don't have an account?", style: TextStyle(color: Colors.grey[600])),
+                  Text(
+                    "Don't have an account?",
+                    style: TextStyle(color: Colors.grey[600]),
+                  ),
                   TextButton(
                     onPressed: () {
                       Navigator.push(
@@ -211,7 +240,10 @@ class _LoginScreenState extends State<LoginScreen> {
                     },
                     child: Text(
                       "Sign up",
-                      style: TextStyle(color: primaryBlue, fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                        color: primaryBlue,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                 ],

@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'home_screen.dart';
+import 'chat_main_screen.dart';
 
 class ChatbotIntroApp extends StatelessWidget {
   const ChatbotIntroApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Chatbot Intro',
-      home: const ChatbotIntroScreen(),
+      home: ChatbotIntroScreen(),
     );
   }
 }
@@ -20,7 +21,7 @@ class ChatbotIntroScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFFDFDFD), // Background color
+      backgroundColor: const Color(0xFFFDFDFD),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -33,28 +34,30 @@ class ChatbotIntroScreen extends StatelessWidget {
                 alignment: Alignment.centerLeft,
                 child: IconButton(
                   icon: const Icon(Icons.arrow_back, color: Colors.blueGrey),
-                  onPressed: (){
+                  onPressed: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) =>HomeScreen() ,
+                        builder: (context) => const HomeScreen(),
                       ),
                     );
-                  }
+                  },
                 ),
               ),
+
               const SizedBox(height: 30),
 
               /// Robot Image
               Expanded(
                 child: Center(
                   child: Image.asset(
-                    "assets/robo.jpeg", // ضع الصورة هنا
+                    "assets/robo.jpeg",
                     width: 400,
                     height: 400,
                   ),
                 ),
               ),
+
               const SizedBox(height: 20),
 
               /// Title
@@ -67,6 +70,7 @@ class ChatbotIntroScreen extends StatelessWidget {
                 ),
                 textAlign: TextAlign.center,
               ),
+
               const SizedBox(height: 10),
 
               /// Description
@@ -75,6 +79,7 @@ class ChatbotIntroScreen extends StatelessWidget {
                 style: TextStyle(fontSize: 14, color: Colors.grey),
                 textAlign: TextAlign.center,
               ),
+
               const SizedBox(height: 30),
 
               /// Continue Button
@@ -83,10 +88,17 @@ class ChatbotIntroScreen extends StatelessWidget {
                 height: 50,
                 child: ElevatedButton(
                   onPressed: () {
-                    // Add navigation to next screen
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const ChatMainScreen(
+                          userId: "1", // 👈 حطي هنا id الحقيقي بتاع المستخدم
+                        ),
+                      ),
+                    );
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xff5D8AA8), // Blue-grey
+                    backgroundColor: const Color(0xff5D8AA8),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),
@@ -97,6 +109,7 @@ class ChatbotIntroScreen extends StatelessWidget {
                   ),
                 ),
               ),
+
               const SizedBox(height: 40),
             ],
           ),
