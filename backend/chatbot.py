@@ -28,8 +28,8 @@ SYSTEM_INSTRUCTIONS = (
     "9. Use only plain text without markdown symbols."
 )
 
-# ✅ مهم: ناخد الداتا بيز من ENV
-DATABASE_URL = os.getenv("DATABASE_URL")
+
+DATABASE_URL = "postgresql://neondb_owner:npg_afdeliTpX2z3@ep-bold-union-amukg53c-pooler.c-5.us-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require";
 
 conn = psycopg2.connect(DATABASE_URL)
 cursor = conn.cursor()
